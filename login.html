@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login | NEET Master</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body class="auth-body"><main class="auth-card"><a class="auth-brand" href="/">N <span>NEET Master</span></a>
+<div class="eyebrow">YOUR MEDICAL JOURNEY</div><h1>Welcome <span>back.</span></h1><p class="muted">Log in to continue your NEET preparation.</p>
+{% with messages = get_flashed_messages(with_categories=true) %}{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}{% endwith %}
+<form method="post" class="auth-form"><label>Mobile number<input name="mobile" type="tel" inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10-digit mobile number" required></label>
+<label>Password<input name="password" type="password" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="Last 4 digits of mobile number" required></label>
+<button class="primary-btn auth-submit" type="submit">Login to NEET Master →</button></form>
+<p class="auth-foot">New student? <a href="{{ url_for('register') }}">Create an account</a></p>
+<div class="auth-note">Demo login rule: your password is the last 4 digits of your registered mobile number. This is convenient but not secure for a public production portal.</div></main></body></html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEET Master | Learn. Practice. Improve.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+  <a class="brand" href="#"><span class="brand-mark">N</span><span>NEET<span class="brand-light">Master</span><small>YOUR MEDICAL JOURNEY</small></span></a>
+  <div class="side-label">WORKSPACE</div>
+  <button class="nav-item active" data-view="dashboard"><span>⌂</span> Dashboard</button>
+  <button class="nav-item" data-view="practice"><span>▤</span> Practice questions</button>
+  <button class="nav-item" data-view="mock"><span>◷</span> Mock test</button>
+  <button class="nav-item" data-view="bookmarks"><span>☆</span> Bookmarks</button>
+  <div class="side-label side-gap">YOUR PREPARATION</div>
+  <button class="nav-item" data-view="progress"><span>▥</span> My progress</button>
+  <div class="sidebar-bottom"><div class="streak-card"><div class="streak-icon">✦</div><b>Small steps. Big results.</b><p>Stay consistent and keep moving towards your goal.</p></div><div class="student"><div class="avatar" id="sideAvatar">S</div><div><b id="sideStudentName">NEET Student</b><small>Keep learning</small></div><span class="online-dot"></span></div></div>
+</aside>
+<main class="main">
+<header class="topbar"><button class="mobile-menu" id="mobileMenu">☰</button><div class="breadcrumb">Workspace <span>/</span> <b id="crumb">Dashboard</b></div><div class="top-actions"><span class="live-pill"><i></i> Learning mode</span><span class="student-name" id="studentName">Student</span><a class="logout-link" href="/logout">Logout ↗</a><div class="top-avatar" id="topAvatar">S</div></div></header>
+<div class="content">
+<section class="view active" id="view-dashboard">
+  <div class="welcome-row"><div><div class="eyebrow">SUNDAY, YOUR NEXT STEP STARTS HERE</div><h1>Good to see you, <span>future doctor.</span> 👋</h1><p class="muted">Build your confidence one question at a time.</p></div><button class="primary-btn" onclick="showView('practice')">Start practicing <span>→</span></button></div>
+  <div class="hero"><div class="hero-copy"><span class="hero-tag">YOUR NEET PREPARATION HUB</span><h2>Prepare smarter.<br><em>Dream bigger.</em></h2><p>Practice concepts, take mock tests and track your progress — all in one place.</p><button class="hero-btn" onclick="showView('practice')">Explore question bank <span>↗</span></button></div><div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-cross">✚</div><div class="hero-book">✧</div><div class="hero-note">NEET<br><b>2027</b></div></div></div>
+  <div class="section-heading"><div><h2>Your subjects</h2><p>Choose a subject and strengthen your concepts.</p></div><span class="subtle-link" onclick="showView('practice')">View question bank →</span></div>
+  <div class="subject-grid" id="subjectGrid"><div class="loading">Loading subjects…</div></div>
+  <div class="dashboard-bottom"><div class="panel progress-panel"><div class="panel-title"><div><h3>Your progress</h3><p>A quick look at your preparation</p></div><button class="text-btn" onclick="showView('progress')">View details →</button></div><div class="stats-row"><div><strong id="attemptCount">0</strong><small>Tests attempted</small></div><div><strong id="avgScore">0</strong><small>Average score / 720</small></div><div><strong id="questionTotal">0</strong><small>Questions available</small></div></div><div class="progress-track"><span id="progressFill"></span></div><small class="muted">Every attempt is a step forward.</small></div><div class="panel quick-panel"><div class="panel-title"><div><h3>Quick actions</h3><p>Pick up where you left off</p></div></div><button class="quick-action" onclick="showView('mock')"><span class="quick-icon purple">◷</span><span><b>Take a mock test</b><small>Timed mixed-subject practice</small></span><span class="arrow">→</span></button><button class="quick-action" onclick="showView('bookmarks')"><span class="quick-icon gold">☆</span><span><b>Review bookmarks</b><small>Revisit saved questions</small></span><span class="arrow">→</span></button></div></div>
+  <div class="disclaimer">Learning resource for practice. Always verify concepts with your prescribed NCERT textbooks and official NTA notices.</div>
+</section>
+<section class="view" id="view-practice">
+ <div class="page-heading"><div class="eyebrow">QUESTION BANK</div><h1>Practice <span>with purpose.</span></h1><p class="muted">Find a topic, answer MCQs and understand every explanation.</p></div>
+ <div class="panel filter-panel"><div class="filters"><label>SUBJECT<select id="subjectSelect"><option>All</option><option>Physics</option><option>Chemistry</option><option>Botany</option><option>Zoology</option></select></label><label>TOPIC<select id="topicSelect"><option>All</option></select></label><label class="search-label">SEARCH TOPICS OR QUESTIONS<input id="searchInput" placeholder="e.g. photosynthesis, Newton…"></label><button class="primary-btn filter-btn" id="loadPractice">Find questions</button></div></div>
+ <div class="panel ai-panel" style="margin-bottom:16px"><div class="panel-title"><div><h3>AI question generator</h3><p>Generate fresh topic-focused MCQs with Gemini when an API key is configured.</p></div><span class="tag">OPTIONAL ONLINE</span></div><div class="filters" style="margin-top:14px"><label>SUBJECT<select id="aiSubject"><option>Physics</option><option>Chemistry</option><option>Botany</option><option>Zoology</option></select></label><label>TOPIC<input id="aiTopic" placeholder="e.g. Human Reproduction"></label><label>NUMBER OF QUESTIONS<select id="aiCount"><option value="5">5 questions</option><option value="10">10 questions</option></select></label><button class="primary-btn filter-btn" id="generateAI">Generate with AI</button></div><p class="muted" style="font-size:9px;margin:10px 0 0">The built-in question bank works offline. AI generation needs internet access and a Gemini API key in your .env file.</p></div>
+ <div class="question-layout"><div class="question-main"><div class="question-toolbar"><b id="questionCountLabel">Question bank</b><span class="muted" id="questionMeta">Choose filters to begin</span></div><div id="questionArea" class="question-area"><div class="empty-state"><div class="empty-icon">✎</div><h3>Ready when you are</h3><p>Choose a subject or search a topic, then load questions.</p></div></div></div><aside class="panel tips-panel"><div class="tip-symbol">✦</div><h3>Learn, don't just memorize.</h3><p>Try answering before revealing the explanation. Understanding why an option is correct makes concepts stick.</p><div class="tip-line"></div><b>NEET tip</b><p class="small">Use bookmarks to collect tricky questions and revise them before your next mock test.</p></aside></div>
+</section>
+<section class="view" id="view-mock">
+ <div class="page-heading"><div class="eyebrow">EXAM SIMULATION</div><h1>Mock test <span>arena.</span></h1><p class="muted">Practice a mixed set in a timed exam-style session.</p></div>
+ <div class="panel mock-setup" id="mockSetup"><div class="mock-illustration">◷</div><h2>Choose your mock test</h2><p>Practice with a short timed test or simulate the full NEET exam.</p><div class="mock-mode-grid"><label class="mock-mode-card"><input type="radio" name="mockMode" value="mini" checked><span><b>Mini Mock Test</b><small>45 questions · 60 minutes</small><small>Mixed-subject practice</small></span></label><label class="mock-mode-card"><input type="radio" name="mockMode" value="full"><span><b>Full NEET Mock Test</b><small>180 questions · 180 minutes</small><small>45 Physics · 45 Chemistry · 90 Biology</small></span></label></div><div class="mock-facts"><span>Previous / Next</span><span>Question palette</span><span>+4 / −1 scoring</span></div><button class="primary-btn" id="startMock">Start selected test <span>→</span></button><small class="muted" id="mockBankNote">Full test requires 180 unique questions in the question bank. Current bank: 72.</small><small class="muted">Practice simulation only; not an official NTA paper.</small></div>
+ <div id="mockArea" class="hidden"></div>
+</section>
+<section class="view" id="view-bookmarks"><div class="page-heading"><div class="eyebrow">SAVED FOR REVISION</div><h1>Your <span>bookmarks.</span></h1><p class="muted">Questions you saved for another look.</p></div><div id="bookmarkArea" class="question-area"></div></section>
+<section class="view" id="view-progress"><div class="page-heading"><div class="eyebrow">YOUR LEARNING JOURNEY</div><h1>Progress <span>overview.</span></h1><p class="muted">Review your attempts and keep improving.</p></div><div class="stats-cards"><div class="panel stat-card"><small>TESTS ATTEMPTED</small><strong id="pAttempts">0</strong></div><div class="panel stat-card"><small>AVERAGE NEET SCORE</small><strong id="pAverage">0 <i>/ 720</i></strong></div><div class="panel stat-card"><small>BOOKMARKED</small><strong id="pBookmarks">0</strong></div></div><div class="panel history-panel"><h3>Recent attempts</h3><div id="historyList" class="history-list">No attempts yet. Your completed tests will appear here.</div></div></section>
+</div></main></div>
+<div class="toast" id="toast"></div>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body></html>
