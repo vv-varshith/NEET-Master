@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register | NEET Master</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body class="auth-body"><main class="auth-card"><a class="auth-brand" href="/">N <span>NEET Master</span></a>
+<div class="eyebrow">START YOUR PREPARATION</div><h1>Create <span>account.</span></h1><p class="muted">Register once to save your own tests and progress.</p>
+{% with messages = get_flashed_messages(with_categories=true) %}{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}{% endwith %}
+<form method="post" class="auth-form"><label>Student name<input name="name" type="text" maxlength="60" placeholder="Enter your full name" required></label>
+<label>Mobile number<input id="mobile" name="mobile" type="tel" inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10-digit mobile number" required></label>
+<label>Password<input id="password" name="password" type="password" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="Last 4 digits of mobile number" required></label>
+<small class="auth-hint">For this requested login format, password must be the last 4 digits of your mobile number.</small>
+<button class="primary-btn auth-submit" type="submit">Create account →</button></form>
+<p class="auth-foot">Already registered? <a href="{{ url_for('login') }}">Login</a></p>
+<div class="auth-note">Important: last-four-digit passwords are easy to guess. Use this only for a local/demo project; add OTP or a user-chosen strong password before public launch.</div></main></body></html>
